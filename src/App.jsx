@@ -16,7 +16,7 @@ const tokenModule = sdk.getTokenModule(TOKEN_MODULE_ADDRESS);
 const voteModule = sdk.getVoteModule(VOTING_MODULE_ADDRESS);
 
 const App = () => {
-  const { connectWallet, address, provider } = useWeb3();
+  const { connectWallet, address, error, provider } = useWeb3();
   console.log('👋 Address:', address);
 
   // The signer is required to sign transactions on the blockchain.
@@ -144,6 +144,18 @@ const App = () => {
       });
   }, [address]);
 
+  if (error && error.name === 'UnsupportedChainIdError') {
+    return (
+      <div className="unsupported-network">
+        <h2>Please connect to Rinkeby</h2>
+        <p>
+          This dapp only works on the Rinkeby network, please switch networks in
+          your connected wallet.
+        </p>
+      </div>
+    );
+  }
+
   if (!address) {
     return (
       <div>
@@ -158,8 +170,7 @@ const App = () => {
   if (hasClaimedNFT) {
     return (
       <div className="member-page">
-        <h1>👟 Kanye DAO Membership Page</h1>
-        <p>Congratulations on being a member</p>
+        <h1>Kanye DAO Membership Page</h1>
         <div>
           <div>
             <h2>Member List</h2>
@@ -299,7 +310,7 @@ const App = () => {
                   ? 'You Already Voted'
                   : 'Submit Votes'}
               </button>
-              <small>
+              <small style={{ fontWeight: 600 }}>
                 This will trigger multiple transactions that you will need to
                 sign.
               </small>
@@ -329,9 +340,14 @@ const App = () => {
 
   return (
     <div className="mint-nft">
-      <h1>Mint your free 👟 Kanye DAO Membership NFT</h1>
-      <button disabled={isClaiming} onClick={() => mintNft()}>
-        {isClaiming ? 'Minting...' : 'Mint your NFT (FREE)'}
+      <h1>You ain't got no yeezys?</h1>
+      <h2>Mint your free pair of yeezys to access KanyeDAO</h2>
+      <button
+        style={{ width: '80%', alignSelf: 'center' }}
+        disabled={isClaiming}
+        onClick={() => mintNft()}
+      >
+        {isClaiming ? 'Minting...' : 'Mint your Yeezys NFT'}
       </button>
     </div>
   );

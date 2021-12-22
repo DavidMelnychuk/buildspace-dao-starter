@@ -4,8 +4,11 @@ body {
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #7700ee;
-  color: #fff;
+  background-image: url('https://www.wptunnel.com/wp-content/uploads/2021/07/wptunnel-kanye-west-wallpaper.jpg');
+  background-repeat: repeat;
+  background-position: 0% 48%;
+  background-size: 50%;
+  color: #fffef7;
   overflow-x: hidden;
 }
 #root {
@@ -93,7 +96,7 @@ h1 {
 
 .member-page form h5 {
   margin-top: 0;
-  color: #7700ee;
+  color: black;
 }
 
 .member-page form .card > div {
@@ -117,7 +120,7 @@ h1 {
 button {
   cursor: pointer;
   background-color: #000;
-  color: #fff;
+  color: #fffef7;
   border: none;
   font-weight: bold;
   font-family: inherit;
